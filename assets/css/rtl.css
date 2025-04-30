@@ -1,0 +1,101 @@
+/* RTL Support for Arabic language */
+[dir="rtl"] {
+    text-align: right;
+}
+
+[dir="rtl"] * {
+    font-family: 'Tajawal', 'Poppins', sans-serif;
+}
+
+/* Header adjustments */
+[dir="rtl"] .logo img {
+    margin-right: 0;
+    margin-left: 15px;
+}
+
+[dir="rtl"] .language-selector {
+    padding: 8px 15px 8px 30px;
+}
+
+[dir="rtl"] .language-selector-container::after {
+    right: auto;
+    left: 12px;
+}
+
+/* Navigation adjustments */
+[dir="rtl"] .header-links a {
+    margin-right: 0;
+    margin-left: 15px;
+}
+
+/* Feature list adjustments */
+[dir="rtl"] .feature-list li {
+    padding-left: 0;
+    padding-right: 25px;
+}
+
+[dir="rtl"] .feature-list li::before {
+    left: auto;
+    right: 0;
+}
+
+/* Search bar adjustments */
+[dir="rtl"] .search-bar input {
+    padding-right: 15px;
+    padding-left: 40px;
+}
+
+[dir="rtl"] .search-bar button {
+    right: auto;
+    left: 10px;
+}
+
+/* Game cards adjustments */
+[dir="rtl"] .game-info {
+    text-align: right;
+}
+
+[dir="rtl"] .game-features li {
+    padding-left: 0;
+    padding-right: 25px;
+}
+
+[dir="rtl"] .game-features li::before {
+    left: auto;
+    right: 0;
+}
+
+/* Footer adjustments */
+[dir="rtl"] .footer-links {
+    flex-direction: row-reverse;
+}
+
+/* Game detail page */
+[dir="rtl"] .feature-icon {
+    margin-right: 0;
+    margin-left: 15px;
+}
+
+/* Form elements */
+[dir="rtl"] .form-group label {
+    text-align: right;
+}
+
+/* Buttons */
+[dir="rtl"] .download-btn i,
+[dir="rtl"] .card-btn i {
+    margin-right: 0;
+    margin-left: 10px;
+}
+
+/* Animations */
+[dir="rtl"] .feature-card:hover .feature-icon {
+    transform: rotateY(-180deg);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    [dir="rtl"] .header-content {
+        flex-direction: column;
+    }
+}

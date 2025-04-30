@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - GameSprint</title>
+    <meta name="description" content="Login to your GameSprint account to download premium modded games and track your favorites">
+    <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="assets/images/favicon.svg">
+
+    <!-- Fonts and Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #4a39ef;
+            --secondary: #7b5eff;
+            --accent: #ff4757;
+            --dark: #1e1e2c;
+            --light: #f8f9fa;
+            --text-light: #ffffff;
+            --text-dark: #333333;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #131320;
+            color: var(--text-light);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-image:
+                radial-gradient(rgba(74, 57, 239, 0.1) 2px, transparent 2px),
+                radial-gradient(rgba(74, 57, 239, 0.1) 2px, transparent 2px);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header */
+        header {
+            background: var(--gradient);
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 50px;
+            margin-right: 15px;
+            border-radius: 10px;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(to right, #fff, #e0e0ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Login Container */
+        .auth-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 1;
+            padding: 60px 20px;
+        }
+
+        .auth-card {
+            background: rgba(30, 30, 44, 0.7);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            width: 100%;
+            max-width: 460px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+        }
+
+        .auth-header {
+            background: var(--gradient);
+            padding: 30px 40px;
+            text-align: center;
+        }
+
+        .auth-header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .auth-header p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+        }
+
+        .auth-body {
+            padding: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(74, 57, 239, 0.2);
+        }
+
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            font-size: 0.9rem;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+        }
+
+        .remember-me input {
+            margin-right: 8px;
+            accent-color: var(--primary);
+        }
+
+        .forgot-password {
+            color: var(--primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .forgot-password:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+
+        .auth-btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: var(--gradient);
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(74, 57, 239, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .auth-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(to right, var(--secondary), var(--primary));
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .auth-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(74, 57, 239, 0.4);
+        }
+
+        .auth-btn:hover::before {
+            width: 100%;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 30px 0;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .divider::before,
+        .divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .divider span {
+            padding: 0 10px;
+            font-size: 0.9rem;
+        }
+
+        .social-auth {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .social-btn:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .social-btn.google {
+            color: #ea4335;
+        }
+
+        .social-btn.facebook {
+            color: #1877f2;
+        }
+
+        .social-btn.twitter {
+            color: #1da1f2;
+        }
+
+        .social-btn.discord {
+            color: #7289da;
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .register-link a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .register-link a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: 10px;
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transform: translateX(150%);
+            transition: transform 0.3s;
+            z-index: 1000;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(30, 30, 44, 0.9);
+            padding: 20px 0;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .copyright {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 576px) {
+            .auth-header {
+                padding: 20px;
+            }
+
+            .auth-body {
+                padding: 20px;
+            }
+
+            .remember-forgot {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+
+            .auth-header h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="home.html">
+                        <img src="assets/images/gamesprint-logo.svg" alt="GameSprint Logo">
+                        <div class="logo-text">GameSprint</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Login Container -->
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h1>Welcome to GameSprint</h1>
+                <p>Login to access your account and premium modded games</p>
+            </div>
+            <div class="auth-body">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="Enter your password" required>
+                    </div>
+                    <div class="remember-forgot">
+                        <div class="remember-me">
+                            <input type="checkbox" id="remember">
+                            <label for="remember">Remember me</label>
+                        </div>
+                        <a href="forgot-password.html" class="forgot-password">Forgot password?</a>
+                    </div>
+                    <button type="submit" class="auth-btn">Login to Account</button>
+                </form>
+
+                <div class="divider">
+                    <span>OR CONTINUE WITH</span>
+                </div>
+
+                <div class="social-auth">
+                    <button class="social-btn google" onclick="socialLogin('google')">
+                        <i class="fab fa-google"></i>
+                    </button>
+                    <button class="social-btn facebook" onclick="socialLogin('facebook')">
+                        <i class="fab fa-facebook-f"></i>
+                    </button>
+                    <button class="social-btn twitter" onclick="socialLogin('twitter')">
+                        <i class="fab fa-twitter"></i>
+                    </button>
+                    <button class="social-btn discord" onclick="socialLogin('discord')">
+                        <i class="fab fa-discord"></i>
+                    </button>
+                </div>
+
+                <div class="register-link">
+                    Don't have an account? <a href="register.html">Register now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div id="notification" class="notification">
+        Login successful! Redirecting...
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p class="copyright">© 2025 GameSprint - All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        // Login form submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Get form values
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const remember = document.getElementById('remember').checked;
+
+            // In a real app, this would be a fetch request to an authentication API
+            // For this demo, we'll simulate a login with mock data
+
+            // Simple validation
+            if (email && password) {
+                // Simulate successful login
+                const user = {
+                    id: "user_" + Math.random().toString(36).substr(2, 9),
+                    email: email,
+                    username: email.split('@')[0], // Extract username from email
+                    premium: false
+                };
+
+                // Save user data in localStorage
+                localStorage.setItem('currentUser', JSON.stringify(user));
+
+                // Show success notification
+                const notification = document.getElementById('notification');
+                notification.classList.add('show');
+
+                // Redirect after a delay
+                setTimeout(() => {
+                    // Redirect to previous page or homepage
+                    const referrer = document.referrer;
+                    if (referrer && !referrer.includes('login.html') && !referrer.includes('register.html')) {
+                        window.location.href = referrer;
+                    } else {
+                        window.location.href = 'index.html';
+                    }
+                }, 2000);
+            }
+        });
+
+        // Social login function
+        function socialLogin(provider) {
+            // In a real app, this would integrate with OAuth providers
+            // For this demo, we'll simulate a login with mock data
+
+            let username;
+            switch(provider) {
+                case 'google':
+                    username = 'google_user';
+                    break;
+                case 'facebook':
+                    username = 'facebook_user';
+                    break;
+                case 'twitter':
+                    username = 'twitter_user';
+                    break;
+                case 'discord':
+                    username = 'discord_user';
+                    break;
+                default:
+                    username = 'social_user';
+            }
+
+            // Create mock user
+            const user = {
+                id: "social_" + Math.random().toString(36).substr(2, 9),
+                email: username + '@example.com',
+                username: username,
+                premium: false,
+                provider: provider
+            };
+
+            // Save user data in localStorage
+            localStorage.setItem('currentUser', JSON.stringify(user));
+
+            // Show success notification
+            const notification = document.getElementById('notification');
+            notification.textContent = `Logged in with ${provider}! Redirecting...`;
+            notification.classList.add('show');
+
+            // Redirect after a delay
+            setTimeout(() => {
+                // Redirect to previous page or homepage
+                const referrer = document.referrer;
+                if (referrer && !referrer.includes('login.html') && !referrer.includes('register.html')) {
+                    window.location.href = referrer;
+                } else {
+                    window.location.href = 'index.html';
+                }
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

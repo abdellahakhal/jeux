@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - ModdedGames+</title>
+    <meta name="description" content="Create a ModdedGames+ account to download premium modded games and track your favorites">
+
+    <!-- Fonts and Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #4a39ef;
+            --secondary: #7b5eff;
+            --accent: #ff4757;
+            --dark: #1e1e2c;
+            --light: #f8f9fa;
+            --text-light: #ffffff;
+            --text-dark: #333333;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #131320;
+            color: var(--text-light);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-image:
+                radial-gradient(rgba(74, 57, 239, 0.1) 2px, transparent 2px),
+                radial-gradient(rgba(74, 57, 239, 0.1) 2px, transparent 2px);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header */
+        header {
+            background: var(--gradient);
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 50px;
+            margin-right: 15px;
+            border-radius: 10px;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(to right, #fff, #e0e0ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Auth Container */
+        .auth-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 1;
+            padding: 40px 20px 60px;
+        }
+
+        .auth-card {
+            background: rgba(30, 30, 44, 0.7);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            width: 100%;
+            max-width: 500px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+        }
+
+        .auth-header {
+            background: var(--gradient);
+            padding: 30px 40px;
+            text-align: center;
+        }
+
+        .auth-header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .auth-header p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+        }
+
+        .auth-body {
+            padding: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(74, 57, 239, 0.2);
+        }
+
+        .password-strength {
+            margin-top: 8px;
+            font-size: 0.85rem;
+        }
+
+        .strength-meter {
+            height: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            margin-top: 5px;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .strength-meter div {
+            height: 100%;
+            width: 0;
+            border-radius: 3px;
+            transition: width 0.5s;
+        }
+
+        .weak {
+            background: #ff4757;
+        }
+
+        .medium {
+            background: #ffc107;
+        }
+
+        .strong {
+            background: #4cd137;
+        }
+
+        .terms {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+            font-size: 0.9rem;
+        }
+
+        .terms input {
+            margin-right: 10px;
+            margin-top: 4px;
+            accent-color: var(--primary);
+        }
+
+        .terms a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .terms a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+
+        .auth-btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: var(--gradient);
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(74, 57, 239, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .auth-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(to right, var(--secondary), var(--primary));
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .auth-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(74, 57, 239, 0.4);
+        }
+
+        .auth-btn:hover::before {
+            width: 100%;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 30px 0;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .divider::before,
+        .divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .divider span {
+            padding: 0 10px;
+            font-size: 0.9rem;
+        }
+
+        .social-auth {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 1.2rem;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .social-btn.google {
+            color: #ea4335;
+        }
+
+        .social-btn.facebook {
+            color: #1877f2;
+        }
+
+        .social-btn.twitter {
+            color: #1da1f2;
+        }
+
+        .social-btn.discord {
+            color: #7289da;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .login-link a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .login-link a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: 10px;
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transform: translateX(150%);
+            transition: transform 0.3s;
+            z-index: 1000;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.success {
+            background: rgba(76, 209, 55, 0.9);
+        }
+
+        .notification.error {
+            background: rgba(255, 71, 87, 0.9);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(30, 30, 44, 0.9);
+            padding: 20px 0;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .copyright {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 576px) {
+            .auth-header {
+                padding: 20px;
+            }
+
+            .auth-body {
+                padding: 20px;
+            }
+
+            .terms {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .auth-header h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="home.html">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1374/1374723.png" alt="ModdedGames+ Logo">
+                        <div class="logo-text">ModdedGames+</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Registration Container -->
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h1>Create Account</h1>
+                <p>Join ModdedGames+ to access premium mods and exclusive features</p>
+            </div>
+            <div class="auth-body">
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" placeholder="Choose a username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="Create a password" required>
+                        <div class="password-strength">
+                            <span id="strength-text">Password strength: Too short</span>
+                            <div class="strength-meter">
+                                <div id="strength-meter-bar"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm-password">Confirm Password</label>
+                        <input type="password" id="confirm-password" placeholder="Confirm your password" required>
+                    </div>
+                    <div class="terms">
+                        <input type="checkbox" id="terms" required>
+                        <label for="terms">I agree to the <a href="terms.html">Terms of Service</a> and <a href="privacy.html">Privacy Policy</a></label>
+                    </div>
+                    <button type="submit" class="auth-btn">Create Account</button>
+                </form>
+
+                <div class="divider">
+                    <span>OR SIGN UP WITH</span>
+                </div>
+
+                <div class="social-auth">
+                    <button class="social-btn google" onclick="socialSignup('google')">
+                        <i class="fab fa-google"></i>
+                    </button>
+                    <button class="social-btn facebook" onclick="socialSignup('facebook')">
+                        <i class="fab fa-facebook-f"></i>
+                    </button>
+                    <button class="social-btn twitter" onclick="socialSignup('twitter')">
+                        <i class="fab fa-twitter"></i>
+                    </button>
+                    <button class="social-btn discord" onclick="socialSignup('discord')">
+                        <i class="fab fa-discord"></i>
+                    </button>
+                </div>
+
+                <div class="login-link">
+                    Already have an account? <a href="login.html">Login instead</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div id="notification" class="notification">
+        Registration successful! Redirecting...
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p class="copyright">© 2025 ModdedGames+ - All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        const passwordInput = document.getElementById('password');
+        const confirmPasswordInput = document.getElementById('confirm-password');
+        const strengthText = document.getElementById('strength-text');
+        const strengthMeterBar = document.getElementById('strength-meter-bar');
+        const registerForm = document.getElementById('registerForm');
+
+        // Password strength checker
+        passwordInput.addEventListener('input', function() {
+            const password = this.value;
+            let strength = 0;
+            let message = '';
+
+            if (password.length < 6) {
+                message = 'Password strength: Too short';
+            } else {
+                // Calculate strength
+                if (password.length >= 8) strength += 1;
+                if (password.match(/[a-z]/) && password.match(/[A-Z]/)) strength += 1;
+                if (password.match(/\d/)) strength += 1;
+                if (password.match(/[^a-zA-Z\d]/)) strength += 1;
+
+                // Set message and color based on strength
+                if (strength <= 2) {
+                    message = 'Password strength: Weak';
+                    strengthMeterBar.className = 'weak';
+                    strengthMeterBar.style.width = '33%';
+                } else if (strength === 3) {
+                    message = 'Password strength: Medium';
+                    strengthMeterBar.className = 'medium';
+                    strengthMeterBar.style.width = '66%';
+                } else {
+                    message = 'Password strength: Strong';
+                    strengthMeterBar.className = 'strong';
+                    strengthMeterBar.style.width = '100%';
+                }
+            }
+
+            strengthText.textContent = message;
+        });
+
+        // Check if passwords match
+        confirmPasswordInput.addEventListener('input', function() {
+            if (this.value !== passwordInput.value) {
+                this.setCustomValidity('Passwords must match');
+            } else {
+                this.setCustomValidity('');
+            }
+        });
+
+        // Form submission
+        registerForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Get form values
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = passwordInput.value;
+            const termsAccepted = document.getElementById('terms').checked;
+
+            // Validate
+            if (!username || !email || !password || !termsAccepted) {
+                showNotification('Please fill out all fields and accept the terms', 'error');
+                return;
+            }
+
+            if (password !== confirmPasswordInput.value) {
+                showNotification('Passwords do not match', 'error');
+                return;
+            }
+
+            // Create user object
+            const user = {
+                id: 'user_' + Math.random().toString(36).substr(2, 9),
+                username: username,
+                email: email,
+                premium: false,
+                registrationDate: new Date().toISOString()
+            };
+
+            // In a real app, this would be a POST request to a registration API
+            // For this demo, we'll save to localStorage
+            localStorage.setItem('currentUser', JSON.stringify(user));
+
+            // Show success notification
+            showNotification('Registration successful! Redirecting...', 'success');
+
+            // Redirect after delay
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 2000);
+        });
+
+        // Social signup
+        function socialSignup(provider) {
+            // In a real app, this would integrate with OAuth providers
+            // For this demo, we'll simulate with mock data
+
+            let username;
+            switch(provider) {
+                case 'google':
+                    username = 'google_user';
+                    break;
+                case 'facebook':
+                    username = 'facebook_user';
+                    break;
+                case 'twitter':
+                    username = 'twitter_user';
+                    break;
+                case 'discord':
+                    username = 'discord_user';
+                    break;
+                default:
+                    username = 'social_user';
+            }
+
+            // Create user object
+            const user = {
+                id: 'social_' + Math.random().toString(36).substr(2, 9),
+                username: username + Math.floor(Math.random() * 1000),
+                email: username + '@example.com',
+                premium: false,
+                provider: provider,
+                registrationDate: new Date().toISOString()
+            };
+
+            // Save to localStorage
+            localStorage.setItem('currentUser', JSON.stringify(user));
+
+            // Show success notification
+            showNotification(`Signed up with ${provider}! Redirecting...`, 'success');
+
+            // Redirect after delay
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 2000);
+        }
+
+        // Show notification
+        function showNotification(message, type = 'info') {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = 'notification'; // Reset classes
+
+            if (type) {
+                notification.classList.add(type);
+            }
+
+            notification.classList.add('show');
+
+            // Auto hide after 5 seconds
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 5000);
+        }
+    </script>
+</body>
+</html>

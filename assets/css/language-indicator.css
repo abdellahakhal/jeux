@@ -1,0 +1,81 @@
+/* Language Indicator Styles */
+.language-indicator {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(74, 57, 239, 0.9);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    font-size: 0.9rem;
+    font-weight: 500;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.language-indicator.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.language-indicator::before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #4cd137;
+    margin-right: 5px;
+}
+
+/* RTL support */
+[dir="rtl"] .language-indicator {
+    right: auto;
+    left: 20px;
+}
+
+[dir="rtl"] .language-indicator::before {
+    margin-right: 0;
+    margin-left: 5px;
+}
+
+/* Language-specific indicators */
+.language-indicator.en::after {
+    content: "EN";
+}
+
+.language-indicator.ar::after {
+    content: "AR";
+}
+
+.language-indicator.fr::after {
+    content: "FR";
+}
+
+.language-indicator.es::after {
+    content: "ES";
+}
+
+.language-indicator.de::after {
+    content: "DE";
+}
+
+.language-indicator.it::after {
+    content: "IT";
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+    .language-indicator {
+        bottom: 10px;
+        right: 10px;
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+}

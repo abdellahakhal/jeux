@@ -1,0 +1,100 @@
+/* Mobile Responsiveness with RTL Support */
+
+/* Base mobile adjustments */
+@media (max-width: 768px) {
+    /* Language selector */
+    .language-selector-container {
+        margin-top: 15px;
+    }
+
+    /* Hero section */
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+
+    [dir="rtl"] .hero h1,
+    [dir="rtl"] .hero p {
+        text-align: right;
+    }
+
+    /* Game cards in mobile */
+    .card {
+        width: 100%;
+        max-width: 350px;
+        margin: 0 auto;
+    }
+
+    /* Mobile search improvements */
+    .search-bar-wrap {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .search-input,
+    .category-select {
+        width: 100%;
+        max-width: 320px;
+        margin-bottom: 10px;
+    }
+
+    /* Header adjustments */
+    .header-content {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .header-right {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    /* RTL-specific mobile fixes */
+    [dir="rtl"] .card {
+        text-align: right;
+    }
+
+    [dir="rtl"] .game-features li {
+        text-align: right;
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero p {
+        font-size: 0.95rem;
+    }
+
+    /* Language selector placement */
+    .language-selector-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 12px;
+    }
+
+    .language-selector {
+        width: 100%;
+        max-width: 200px;
+    }
+
+    /* RTL in small mobile */
+    [dir="rtl"] .feature-list li::before {
+        right: 5px;
+    }
+
+    [dir="rtl"] .feature-list li {
+        padding-right: 20px;
+    }
+}
+
+/* Light and Dark mode differences in RTL */
+body.dark-mode[dir="rtl"] .card {
+    background-color: var(--card-bg-dark);
+}

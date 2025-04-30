@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Changelog - GameSprint</title>
+    <meta name="description" content="View the latest updates and improvements to the GameSprint modded games website.">
+    <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="assets/images/favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4a39ef;
+            --secondary: #7b5eff;
+            --accent: #ff4757;
+            --dark: #0a0a23;
+            --light: #f8f9fa;
+            --text-light: #ffffff;
+            --text-dark: #333333;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+            --transition: all 0.3s ease;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-image:
+                radial-gradient(rgba(74, 57, 239, 0.1) 2px, transparent 2px),
+                radial-gradient(rgba(74, 57, 239, 0.1) 2px, transparent 2px);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header */
+        header {
+            background: var(--gradient);
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 50px;
+            margin-right: 15px;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(to right, #fff, #e0e0ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .back-link {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: var(--transition);
+            padding: 8px 15px;
+            border-radius: 20px;
+        }
+
+        .back-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Main Content */
+        main {
+            flex: 1;
+            padding: 60px 0;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .page-title h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #fff, var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .page-title p {
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Changelog */
+        .changelog {
+            position: relative;
+            margin-top: 30px;
+        }
+
+        .timeline {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 20px;
+            width: 2px;
+            background: var(--primary);
+        }
+
+        .version {
+            position: relative;
+            padding-left: 70px;
+            margin-bottom: 50px;
+        }
+
+        .version:last-child {
+            margin-bottom: 0;
+        }
+
+        .version-marker {
+            position: absolute;
+            left: 11px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 4px solid var(--dark);
+            z-index: 1;
+        }
+
+        .version-header {
+            margin-bottom: 20px;
+        }
+
+        .version-number {
+            display: inline-block;
+            background: var(--gradient);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-right: 15px;
+        }
+
+        .version-date {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .version-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--accent);
+        }
+
+        .version-changes {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .version-changes ul {
+            list-style-type: none;
+        }
+
+        .version-changes li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 12px;
+        }
+
+        .version-changes li:last-child {
+            margin-bottom: 0;
+        }
+
+        .version-changes li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: #4cd137;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(10, 10, 35, 0.9);
+            padding: 30px 0;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .copyright {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .page-title h1 {
+                font-size: 2rem;
+            }
+
+            .version {
+                padding-left: 50px;
+            }
+
+            .version-marker {
+                left: 11px;
+            }
+
+            .timeline {
+                left: 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .page-title h1 {
+                font-size: 1.8rem;
+            }
+
+            .version-title {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="home.html">
+                        <img src="assets/images/gamesprint-logo.svg" alt="GameSprint Logo">
+                        <div class="logo-text">GameSprint</div>
+                    </a>
+                </div>
+                <a href="home.html" class="back-link">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="page-title">
+                <h1>Changelog</h1>
+                <p>Track the latest updates and improvements to the GameSprint platform</p>
+            </div>
+
+            <div class="changelog">
+                <div class="timeline"></div>
+
+                <div class="version">
+                    <div class="version-marker"></div>
+                    <div class="version-header">
+                        <span class="version-number">v2.0</span>
+                        <span class="version-date">April 30, 2025</span>
+                    </div>
+                    <h2 class="version-title">GameSprint Branding Update</h2>
+                    <div class="version-changes">
+                        <ul>
+                            <li>Updated website name from ModdedGames+ to GameSprint throughout all pages</li>
+                            <li>Created custom SVG logo and favicon for GameSprint</li>
+                            <li>Downloaded local copies of game images for faster loading</li>
+                            <li>Added favicon to all pages for consistent branding</li>
+                            <li>Updated page descriptions and metadata for better SEO</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="version">
+                    <div class="version-marker"></div>
+                    <div class="version-header">
+                        <span class="version-number">v1.0</span>
+                        <span class="version-date">April 29, 2025</span>
+                    </div>
+                    <h2 class="version-title">Improved English ModdedGames+ Website</h2>
+                    <div class="version-changes">
+                        <ul>
+                            <li>Converted website from Arabic to English for international audience</li>
+                            <li>Improved UI/design with modern elements and responsive layouts</li>
+                            <li>Added responsive features for all device types</li>
+                            <li>Created dynamic game cards generated with JavaScript</li>
+                            <li>Added dedicated 8Ball Pool details page</li>
+                            <li>Created main landing page with navigation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p class="copyright">© 2025 GameSprint - All Rights Reserved</p>
+        </div>
+    </footer>
+</body>
+</html>

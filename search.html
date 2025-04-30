@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameSprint | Game Search</title>
+    <meta name="description" content="Search for your favorite modded games across all categories on GameSprint.">
+    <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="assets/images/favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/rtl.css">
+    <link rel="stylesheet" href="assets/css/mobile-rtl.css">
+    <link rel="stylesheet" href="assets/css/language-indicator.css">
+    <link rel="stylesheet" href="assets/css/image-loading.css">
+    <link rel="stylesheet" href="assets/css/theme-switcher.css">
+    <style>
+        :root {
+            --primary: #4a39ef;
+            --secondary: #7b5eff;
+            --accent: #ff4757;
+            --dark: #0a0a23;
+            --light: #f8f9fa;
+            --text-light: #ffffff;
+            --text-dark: #333333;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+            --transition: all 0.3s ease;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--dark);
+            color: var(--text-light);
+            min-height: 100vh;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            background-image:
+                radial-gradient(rgba(74, 57, 239, 0.07) 2px, transparent 2px),
+                radial-gradient(rgba(74, 57, 239, 0.08) 2px, transparent 2px);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+        }
+        header {
+            background: var(--gradient);
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .container {
+            width: 92%;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo { display: flex; align-items: center; text-decoration: none; }
+        .logo img { height: 50px; margin-right: 15px; }
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(to right, #fff, #e0e0ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .main-nav {
+            display: flex;
+            gap: 18px;
+        }
+        .nav-link {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.08rem;
+            padding: 6px 12px;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+        .nav-link:hover,
+        .nav-link.active {
+            background: rgba(255,255,255,0.13);
+            color: #ffd6e0;
+        }
+        main {
+            flex: 1;
+            padding: 40px 0 80px 0;
+        }
+        .search-hero {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+        .search-hero h1 {
+            font-size: 2.3rem;
+            background: linear-gradient(to right, #fff, var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 10px;
+        }
+        .search-bar-wrap {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        .search-input {
+            padding: 16px 22px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            width: 280px;
+            background: rgba(255,255,255,0.1);
+            color: var(--text-light);
+            margin-right: 10px;
+        }
+        .category-select {
+            border-radius: 30px;
+            border: none;
+            background: rgba(255,255,255,0.1);
+            color: var(--text-light);
+            padding: 14px 40px 14px 16px;
+            font-size: 1.1rem;
+        }
+        .game-results {
+            min-height: 120px;
+        }
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 28px;
+        }
+        .game-card {
+            background: #171736;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            top: 0;
+        }
+        .game-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        .game-image {
+            height: 180px;
+            overflow: hidden;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            background: #222244;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .game-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 1px 10px rgba(74,57,239,0.09));
+            transition: transform 0.5s ease;
+        }
+        .game-card:hover .game-image img {
+            transform: scale(1.07);
+        }
+        .game-info {
+            padding: 22px 20px 18px 20px;
+        }
+        .game-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+        .game-rating {
+            color: #ffa502;
+            font-weight: bold;
+            margin: 7px 0 4px 0;
+        }
+        .game-features {
+            list-style-type: none;
+            margin: 13px 0 16px 0;
+            color: #bbb;
+            padding: 0;
+        }
+        .game-features li {
+            font-size: 0.97rem;
+            margin-bottom: 5px;
+            margin-left: 12px;
+        }
+        .download-btn {
+            display: inline-block;
+            background-image: linear-gradient(to right, #ff4757, #ff6b81);
+            color: white;
+            padding: 9px 22px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .download-btn:hover {
+            box-shadow: 0 7px 20px rgba(255, 71, 87, 0.2);
+            transform: translateY(-3px);
+        }
+        .no-results {
+            text-align: center;
+            opacity: 0.65;
+            margin-top: 20px;
+        }
+        /* Footer */
+        footer {
+            background: rgba(10, 10, 35, 0.9);
+            padding: 30px 0;
+            text-align: center;
+            margin-top: auto;
+        }
+        .copyright {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            .games-grid { grid-template-columns: 1fr; }
+            .search-hero h1 { font-size: 1.35rem; }
+            .main-nav { flex-direction: column; gap: 8px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="home.html" class="logo">
+                    <img src="assets/images/gamesprint-logo.svg" alt="GameSprint Logo">
+                    <div class="logo-text">GameSprint</div>
+                </a>
+                <nav class="main-nav">
+                    <a href="home.html" class="nav-link" data-i18n="home">Home</a>
+                    <a href="games.html" class="nav-link" data-i18n="games">Games</a>
+                    <a href="search.html" class="nav-link active" data-i18n="search">Search</a>
+                    <a href="login.html" class="nav-link" data-i18n="login">Login</a>
+                    <a href="changelog.html" class="nav-link" data-i18n="changelog">Changelog</a>
+                </nav>
+                <div class="language-selector-container">
+                    <select id="language-selector" class="language-selector" onchange="changeLanguage(this.value)">
+                        <option value="en" data-i18n="english">English</option>
+                        <option value="ar" data-i18n="arabic">Arabic</option>
+                        <option value="fr" data-i18n="french">French</option>
+                        <option value="es" data-i18n="spanish">Spanish</option>
+                        <option value="de" data-i18n="german">German</option>
+                        <option value="it" data-i18n="italian">Italian</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="search-hero">
+                <h1 data-i18n="search">Game Search</h1>
+                <p style="color:#aaa;font-size:1.12rem" data-i18n="search_desc">Find your favorite modded mobile games instantly by name or category.</p>
+            </div>
+            <div class="search-bar-wrap">
+                <input type="text" id="searchInput" class="search-input" placeholder="Search for a game...">
+                <select id="categorySelect" class="category-select">
+                    <option value="all">All Categories</option>
+                    <option value="action">Action</option>
+                    <option value="adventure">Adventure</option>
+                    <option value="puzzle">Puzzle</option>
+                    <option value="strategy">Strategy</option>
+                    <option value="sports">Sports</option>
+                </select>
+            </div>
+            <div class="game-results">
+                <div class="games-grid" id="gamesGrid"></div>
+                <div class="no-results" id="noResults" style="display: none;">No games found. Try another search!</div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <p class="copyright">© 2025 GameSprint - All Rights Reserved | <a href="changelog.html" style="color: inherit; text-decoration: underline;">Changelog</a></p>
+        </div>
+    </footer>
+    <script src="assets/js/games-data.js"></script>
+    <script>
+    if(!window.gamesData){
+        window.gamesData = [
+           // [ ... truncated for brevity and typical real use: load from a file ... ]
+           // We'll load from assets/js/games-data.js
+        ];
+    }
+    const games = window.gamesData;
+    const gamesGrid = document.getElementById('gamesGrid');
+    const searchInput = document.getElementById('searchInput');
+    const categorySelect = document.getElementById('categorySelect');
+    const noResults = document.getElementById('noResults');
+
+    function getLocalImageForGame(game) {
+        // Map game titles to local images
+        const title = game.title.toLowerCase();
+        if (title.includes('8 ball')) return 'assets/images/8ball-gameplay.jpg';
+        if (title.includes('gta 5')) return 'assets/images/gta5-logo.jpg';
+        if (title.includes('clash of clans')) return 'assets/images/coc-logo.png';
+        if (title.includes('block blast')) return 'assets/images/block-blast.png';
+        if (title.includes('subway')) return 'assets/images/subway-surfers.jpg';
+        if (title.includes('stumble guys')) return 'assets/images/stumble-guys.jpg';
+        if (title.includes('free fire')) return 'assets/images/free-fire.jpg';
+        if (title.includes('among us')) return 'assets/images/among-us.jpg';
+        if (title.includes('candy crush')) return 'assets/images/candy-crush.jpg';
+        if (title.includes('call of duty')) return 'assets/images/codm.jpg';
+        if (title.includes('pubg')) return 'assets/images/pubg.jpg';
+        if (title.includes('minecraft')) return 'assets/images/minecraft.jpg';
+        if (title.includes('roblox')) return 'assets/images/roblox.jpg';
+        if (title.includes('brawl stars')) return 'assets/images/brawl-stars.jpg';
+        if (title.includes('pokemon go')) return 'assets/images/pokemon-go.jpg';
+        if (title.includes('temple run')) return 'assets/images/temple-run.jpg';
+        if (title.includes('hill climb')) return 'assets/images/hill-climb.jpg';
+        if (title.includes('plants vs zombies')) return 'assets/images/pvz.jpg';
+        if (title.includes('angry birds')) return 'assets/images/angry-birds.jpg';
+        if (title.includes('shadow fight')) return 'assets/images/shadow-fight.jpg';
+        if (title.includes('real racing')) return 'assets/images/real-racing.jpg';
+        if (title.includes('asphalt')) return 'assets/images/asphalt.jpg';
+        if (title.includes('dream league')) return 'assets/images/dream-league.jpg';
+        if (title.includes('fifa')) return 'assets/images/fifa.jpg';
+        if (title.includes('geometry dash')) return 'assets/images/geometry-dash.jpg';
+        if (title.includes('plague inc')) return 'assets/images/plague-inc.jpg';
+        if (title.includes('monument valley')) return 'assets/images/monument-valley.jpg';
+        if (title.includes('limbo')) return 'assets/images/limbo.jpg';
+        if (title.includes('badland')) return 'assets/images/badland.jpg';
+        if (title.includes('fruit ninja')) return 'assets/images/fruit-ninja.jpg';
+        if (title.includes('jetpack joyride')) return 'assets/images/jetpack-joyride.jpg';
+        if (title.includes('crossy road')) return 'assets/images/crossy-road.jpg';
+        if (title.includes('cut the rope')) return 'assets/images/cut-the-rope.jpg';
+        if (title.includes('2048')) return 'assets/images/2048.jpg';
+        if (title.includes('flow free')) return 'assets/images/flow-free.jpg';
+        if (title.includes('brain out')) return 'assets/images/brain-out.jpg';
+        if (title.includes('wordscapes')) return 'assets/images/wordscapes.jpg';
+        if (title.includes('sudoku')) return 'assets/images/sudoku.jpg';
+        if (title.includes('chess')) return 'assets/images/chess.jpg';
+        if (title.includes('monopoly')) return 'assets/images/monopoly.jpg';
+        if (title.includes('uno')) return 'assets/images/uno.jpg';
+        if (title.includes('scrabble')) return 'assets/images/scrabble.jpg';
+        if (title.includes('solitaire')) return 'assets/images/solitaire.jpg';
+        if (title.includes('ludo')) return 'assets/images/ludo.jpg';
+        if (title.includes('domino')) return 'assets/images/domino.jpg';
+        if (title.includes('mahjong')) return 'assets/images/mahjong.jpg';
+        // fallback to original image
+        return game.image;
+    }
+
+    // Function to get the game detail page URL
+    function getGameDetailsPage(game) {
+        const title = game.title.toLowerCase();
+        if (title.includes('8 ball')) return '8ball-mod.html';
+        if (title.includes('gta 5')) return 'gta5-mod.html';
+        if (title.includes('clash of clans')) return 'coc-mod.html';
+        return '#';
+    }
+
+    // Function to check if game has a detail page, otherwise show alert
+    function checkGamePage(game) {
+        const title = game.title.toLowerCase();
+        if (title.includes('8 ball') || title.includes('gta 5') || title.includes('clash of clans')) {
+            window.location.href = getGameDetailsPage(game);
+        } else {
+            alert('Detail page coming soon!');
+        }
+    }
+
+    function createGameCards(gamesArray) {
+        gamesGrid.innerHTML = '';
+        gamesArray.forEach(game => {
+            const gameCard = document.createElement('div');
+            gameCard.className = 'game-card';
+            // Use local images when available to avoid loading issues
+            let imgSrc = getLocalImageForGame(game);
+
+            // stars
+            const fullStars = Math.floor(game.rating);
+            const starsHTML = '★'.repeat(fullStars) + '☆'.repeat(5 - fullStars);
+
+            // features
+            const featuresHTML = game.features.map(f => `<li>${f}</li>`).join('');
+
+            // Use correct detail page links for available games
+            gameCard.innerHTML = `
+                <div class="game-image">
+                    <div class="image-container">
+                        <img src="${imgSrc}" alt="${game.title}">
+                        <div class="placeholder-content">
+                            <div class="icon"><i class="fas fa-gamepad"></i></div>
+                            <div class="title">${game.title}</div>
+                            <div class="message">Game image unavailable</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-info">
+                    <div class="game-title">${game.title}</div>
+                    <div class="game-rating">${game.rating} <span style='color:#ffa502;font-size:1.1em;'>${starsHTML}</span></div>
+                    <ul class="game-features">${featuresHTML}</ul>
+                    <a href="${getGameDetailsPage(game)}" class="download-btn" onclick="event.preventDefault(); checkGamePage(window.gamesData.find(g => g.title === '${game.title.replace(/'/g, "\\'")}'));">Download Mod</a>
+                </div>
+            `;
+            gamesGrid.appendChild(gameCard);
+        });
+        noResults.style.display = gamesArray.length === 0 ? 'block' : 'none';
+    }
+
+    function searchGames() {
+        const term = searchInput.value.trim().toLowerCase();
+        const cat = categorySelect.value;
+        let filtered = games.filter(game =>
+            (cat === 'all' || game.category === cat) &&
+            (game.title.toLowerCase().includes(term) || game.category.toLowerCase().includes(term))
+        );
+        createGameCards(filtered);
+    }
+
+    searchInput.addEventListener('input', searchGames);
+    categorySelect.addEventListener('change', searchGames);
+    // Initial render
+    createGameCards(games);
+    </script>
+
+    <!-- Language indicator -->
+    <div class="language-indicator" id="languageIndicator"></div>
+
+    <!-- Language Support -->
+    <script src="assets/js/language.js"></script>
+    <script src="assets/js/image-placeholders.js"></script>
+    <script src="assets/js/image-loader.js"></script>
+    <script src="assets/js/theme-switcher.js"></script>
+</body>
+</html>

@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameSprint | Premium Mobile Game Mods</title>
+    <meta name="description" content="Download the best modded mobile games with premium features unlocked - unlimited money, no ads, and more!">
+    <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="assets/images/favicon.svg">
+
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="GameSprint | Premium Mobile Game Mods">
+    <meta property="og:description" content="Download the best modded mobile games with premium features unlocked!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://gamesprint.games/">
+    <meta property="og:site_name" content="GameSprint">
+    <meta name="theme-color" content="#4a39ef">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/rtl.css">
+    <link rel="stylesheet" href="assets/css/mobile-rtl.css">
+    <link rel="stylesheet" href="assets/css/language-indicator.css">
+    <link rel="stylesheet" href="assets/css/image-loading.css">
+    <link rel="stylesheet" href="assets/css/theme-switcher.css">
+    <style>
+        :root {
+            --primary: #4a39ef;
+            --secondary: #7b5eff;
+            --accent: #ff4757;
+            --dark: #0a0a23;
+            --light: #f8f9fa;
+            --text-light: #ffffff;
+            --text-dark: #333333;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+            --transition: all 0.3s ease;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        [dir="rtl"] * {
+            font-family: 'Tajawal', 'Poppins', sans-serif;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-image:
+                radial-gradient(rgba(74, 57, 239, 0.1) 2px, transparent 2px),
+                radial-gradient(rgba(74, 57, 239, 0.1) 2px, transparent 2px);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header */
+        header {
+            background: var(--gradient);
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 50px;
+            margin-right: 15px;
+        }
+
+        [dir="rtl"] .logo img {
+            margin-right: 0;
+            margin-left: 15px;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(to right, #fff, #e0e0ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Navigation */
+        .main-nav {
+            display: flex;
+            gap: 18px;
+            align-items: center;
+        }
+        .nav-link {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: background 0.2s;
+        }
+        .nav-link.active,
+        .nav-link:hover {
+            background: rgba(255,255,255,0.15);
+        }
+
+        /* Language Selector */
+        .language-selector-container {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .language-selector {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            padding: 8px 30px 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            font-family: inherit;
+        }
+
+        [dir="rtl"] .language-selector {
+            padding: 8px 15px 8px 30px;
+        }
+
+        .language-selector:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .language-selector-container::after {
+            content: "\f078";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        [dir="rtl"] .language-selector-container::after {
+            right: auto;
+            left: 12px;
+        }
+
+        /* Hero Section */
+        .hero {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #fff, var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Card Section */
+        .card-section {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            width: 350px;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-15px);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .card:hover img {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .card h2 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+
+        .card p {
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .feature-list li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        [dir="rtl"] .feature-list li {
+            padding-left: 0;
+            padding-right: 25px;
+        }
+
+        .feature-list li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: #4cd137;
+        }
+
+        [dir="rtl"] .feature-list li::before {
+            left: auto;
+            right: 0;
+        }
+
+        .card-btn {
+            display: inline-block;
+            background: var(--gradient);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .card-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(10, 10, 35, 0.9);
+            padding: 30px 0;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .copyright {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .card {
+                width: 100%;
+            }
+            .main-nav {
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="home.html" class="logo">
+                    <img src="assets/images/gamesprint-logo.svg" alt="GameSprint Logo">
+                    <div class="logo-text">GameSprint</div>
+                </a>
+                <nav class="main-nav">
+                    <a href="home.html" class="nav-link active" data-i18n="home">Home</a>
+                    <a href="games.html" class="nav-link" data-i18n="games">Games</a>
+                    <a href="search.html" class="nav-link" data-i18n="search">Search</a>
+                    <a href="login.html" class="nav-link" data-i18n="login">Login</a>
+                    <a href="changelog.html" class="nav-link" data-i18n="changelog">Changelog</a>
+                </nav>
+                <div class="language-selector-container">
+                    <select id="language-selector" class="language-selector" onchange="changeLanguage(this.value)">
+                        <option value="en" data-i18n="english">English</option>
+                        <option value="ar" data-i18n="arabic">Arabic</option>
+                        <option value="fr" data-i18n="french">French</option>
+                        <option value="es" data-i18n="spanish">Spanish</option>
+                        <option value="de" data-i18n="german">German</option>
+                        <option value="it" data-i18n="italian">Italian</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 data-i18n="hero_title">Premium Mobile Game Mods</h1>
+                <p data-i18n="hero_subtitle">Enhance your gaming experience with our exclusive modded versions featuring unlimited money, ad-free gameplay, and all premium features unlocked!</p>
+
+                <div class="card-section">
+                    <div class="card">
+                        <div class="game-image">
+                            <div class="image-container">
+                                <img src="assets/images/games/8ball-pool.jpg" alt="8 Ball Pool">
+                                <div class="placeholder-content">
+                                    <div class="icon"><i class="fas fa-gamepad"></i></div>
+                                    <div class="title">8 Ball Pool</div>
+                                    <div class="message">Game image unavailable</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h2 data-i18n="ball_title">8 Ball Pool MOD</h2>
+                            <p data-i18n="ball_desc">The ultimate billiards experience with premium features unlocked!</p>
+                            <ul class="feature-list">
+                                <li data-i18n="ball_feature1">Unlimited money & coins</li>
+                                <li data-i18n="ball_feature2">All cues unlocked</li>
+                                <li data-i18n="ball_feature3">Ad-free gameplay</li>
+                                <li data-i18n="ball_feature4">Anti-ban protection</li>
+                            </ul>
+                            <a href="8ball-mod.html" class="card-btn" data-i18n="download_btn">View Details</a>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="game-image">
+                            <div class="image-container">
+                                <img src="assets/images/games/gta5-mobile.jpg" alt="GTA 5 Mobile">
+                                <div class="placeholder-content">
+                                    <div class="icon"><i class="fas fa-gamepad"></i></div>
+                                    <div class="title">GTA 5 Mobile</div>
+                                    <div class="message">Game image unavailable</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h2 data-i18n="gta_title">GTA 5 Mobile MOD</h2>
+                            <p data-i18n="gta_desc">Experience the ultimate open-world action game on mobile</p>
+                            <ul class="feature-list">
+                                <li data-i18n="gta_feature1">Unlimited money</li>
+                                <li data-i18n="gta_feature2">All vehicles unlocked</li>
+                                <li data-i18n="gta_feature3">Complete maps</li>
+                                <li data-i18n="gta_feature4">Anti-ban protection</li>
+                            </ul>
+                            <a href="gta5-mod.html" class="card-btn" data-i18n="download_btn">View Details</a>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="game-image">
+                            <div class="image-container">
+                                <img src="assets/images/games/clash-of-clans.jpg" alt="Clash of Clans">
+                                <div class="placeholder-content">
+                                    <div class="icon"><i class="fas fa-gamepad"></i></div>
+                                    <div class="title">Clash of Clans</div>
+                                    <div class="message">Game image unavailable</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h2 data-i18n="coc_title">Clash of Clans MOD</h2>
+                            <p data-i18n="coc_desc">Dominate with unlimited resources and instant upgrades</p>
+                            <ul class="feature-list">
+                                <li data-i18n="coc_feature1">Unlimited gems</li>
+                                <li data-i18n="coc_feature2">All troops unlocked</li>
+                                <li data-i18n="coc_feature3">Instant upgrades</li>
+                                <li data-i18n="coc_feature4">Anti-ban protection</li>
+                            </ul>
+                            <a href="coc-mod.html" class="card-btn" data-i18n="download_btn">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p class="copyright">
+                <span data-i18n="copyright">© 2025 GameSprint - All Rights Reserved</span> |
+                <a href="changelog.html" style="color: inherit; text-decoration: underline;" data-i18n="changelog">Changelog</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Language indicator -->
+    <div class="language-indicator" id="languageIndicator"></div>
+
+    <!-- Add scripts -->
+    <script src="assets/js/language.js"></script>
+    <script src="assets/js/image-placeholders.js"></script>
+    <script src="assets/js/image-loader.js"></script>
+    <script src="assets/js/theme-switcher.js"></script>
+</body>
+</html>

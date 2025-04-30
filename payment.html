@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Payment - ModdedGames+</title>
+    <meta name="description" content="Complete your payment to unlock premium modded games with all features">
+
+    <!-- Fonts and Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #4a39ef;
+            --secondary: #7b5eff;
+            --accent: #ff4757;
+            --dark: #1e1e2c;
+            --light: #f8f9fa;
+            --text-light: #ffffff;
+            --text-dark: #333333;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #131320;
+            color: var(--text-light);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-image:
+                radial-gradient(rgba(74, 57, 239, 0.1) 2px, transparent 2px),
+                radial-gradient(rgba(74, 57, 239, 0.1) 2px, transparent 2px);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header */
+        header {
+            background: var(--gradient);
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 50px;
+            margin-right: 15px;
+            border-radius: 10px;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(to right, #fff, #e0e0ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Payment Container */
+        .payment-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex: 1;
+            padding: 60px 20px;
+        }
+
+        .payment-wrapper {
+            display: flex;
+            gap: 30px;
+            width: 100%;
+            max-width: 1000px;
+            flex-wrap: wrap;
+        }
+
+        .payment-details {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .payment-summary {
+            flex: 0 0 350px;
+        }
+
+        .payment-card {
+            background: rgba(30, 30, 44, 0.7);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            height: 100%;
+        }
+
+        .payment-header {
+            background: var(--gradient);
+            padding: 25px 30px;
+        }
+
+        .payment-header h1 {
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        .payment-header p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+        }
+
+        .payment-body {
+            padding: 30px;
+        }
+
+        /* Game Info */
+        .game-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .game-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .game-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .game-title {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            color: white;
+        }
+
+        .game-price {
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 1.1rem;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group select {
+            appearance: none;
+            padding-right: 30px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' class='bi bi-chevron-down' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(74, 57, 239, 0.2);
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        /* Card Box */
+        .card-box {
+            padding: 20px;
+            background: rgba(30, 30, 44, 0.9);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .card-icons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .card-icon {
+            font-size: 1.5rem;
+        }
+
+        .cc-icon {
+            color: #1a73e8;
+        }
+
+        .visa-icon {
+            color: #1434cb;
+        }
+
+        .mastercard-icon {
+            color: #eb001b;
+        }
+
+        .amex-icon {
+            color: #006fcf;
+        }
+
+        /* Payment Summary */
+        .summary-list {
+            margin-bottom: 20px;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        /* Button */
+        .pay-btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: var(--gradient);
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(74, 57, 239, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            margin-top: 20px;
+        }
+
+        .pay-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(to right, var(--secondary), var(--primary));
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .pay-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(74, 57, 239, 0.4);
+        }
+
+        .pay-btn:hover::before {
+            width: 100%;
+        }
+
+        .security-note {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .security-note i {
+            color: #4cd137;
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: 10px;
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transform: translateX(150%);
+            transition: transform 0.3s;
+            z-index: 1000;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.success {
+            background: rgba(76, 209, 55, 0.9);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(30, 30, 44, 0.9);
+            padding: 20px 0;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .copyright {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .payment-wrapper {
+                flex-direction: column-reverse;
+            }
+
+            .payment-summary {
+                flex: 1;
+                width: 100%;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .form-row .form-group {
+                margin-bottom: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="home.html">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1374/1374723.png" alt="ModdedGames+ Logo">
+                        <div class="logo-text">ModdedGames+</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Payment Container -->
+    <div class="payment-container">
+        <div class="payment-wrapper">
+            <!-- Payment Details -->
+            <div class="payment-details">
+                <div class="payment-card">
+                    <div class="payment-header">
+                        <h1>Payment Details</h1>
+                        <p>Complete your payment to download the premium version</p>
+                    </div>
+                    <div class="payment-body">
+                        <div class="card-box">
+                            <div class="card-header">
+                                <div class="card-title">Credit / Debit Card</div>
+                                <div class="card-icons">
+                                    <i class="fab fa-cc-visa visa-icon"></i>
+                                    <i class="fab fa-cc-mastercard mastercard-icon"></i>
+                                    <i class="fab fa-cc-amex amex-icon"></i>
+                                </div>
+                            </div>
+
+                            <form id="paymentForm">
+                                <div class="form-group">
+                                    <label for="cardNumber">Card Number</label>
+                                    <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" required>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="expiryDate">Expiry Date</label>
+                                        <input type="text" id="expiryDate" placeholder="MM/YY" maxlength="5" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="cvv">CVV</label>
+                                        <input type="text" id="cvv" placeholder="123" maxlength="4" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="cardName">Name on Card</label>
+                                    <input type="text" id="cardName" placeholder="John Doe" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="country">Country</label>
+                                    <select id="country" required>
+                                        <option value="" disabled selected>Select your country</option>
+                                        <option value="US">United States</option>
+                                        <option value="CA">Canada</option>
+                                        <option value="GB">United Kingdom</option>
+                                        <option value="AU">Australia</option>
+                                        <option value="DE">Germany</option>
+                                        <option value="FR">France</option>
+                                        <option value="JP">Japan</option>
+                                        <option value="OTHER">Other</option>
+                                    </select>
+                                </div>
+
+                                <button type="submit" class="pay-btn">Complete Purchase</button>
+
+                                <div class="security-note">
+                                    <i class="fas fa-lock"></i>
+                                    <span>Your payment information is encrypted and secure</span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment Summary -->
+            <div class="payment-summary">
+                <div class="payment-card">
+                    <div class="payment-header">
+                        <h1>Order Summary</h1>
+                        <p>Premium Download</p>
+                    </div>
+                    <div class="payment-body">
+                        <div class="game-info">
+                            <div class="game-image">
+                                <img id="gameImage" src="https://th.bing.com/th/id/OIP._2lwYHan_rAQRfLpq1d11QHaEo?rs=1&pid=ImgDetMain" alt="Game Image">
+                            </div>
+                            <div>
+                                <div class="game-title" id="gameTitle">Loading...</div>
+                                <div class="game-price"><span id="gamePrice">$4.99</span></div>
+                            </div>
+                        </div>
+
+                        <div class="summary-list">
+                            <div class="summary-item">
+                                <span>Subtotal</span>
+                                <span id="subtotal">$4.99</span>
+                            </div>
+                            <div class="summary-item">
+                                <span>Premium Support (1 year)</span>
+                                <span>Included</span>
+                            </div>
+                            <div class="summary-item">
+                                <span>Anti-Ban Protection</span>
+                                <span>Included</span>
+                            </div>
+                            <div class="summary-item">
+                                <span>Priority Updates</span>
+                                <span>Included</span>
+                            </div>
+                        </div>
+
+                        <div class="summary-total">
+                            <span>Total</span>
+                            <span id="totalPrice">$4.99</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div id="notification" class="notification">
+        Payment successful! Redirecting to download...
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p class="copyright">© 2025 ModdedGames+ - All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        // Format card number with spaces
+        document.getElementById('cardNumber').addEventListener('input', function(e) {
+            const input = e.target;
+            const value = input.value.replace(/\s+/g, '');
+            let formattedValue = '';
+
+            for(let i = 0; i < value.length; i++) {
+                if(i > 0 && i % 4 === 0) {
+                    formattedValue += ' ';
+                }
+                formattedValue += value[i];
+            }
+
+            input.value = formattedValue;
+        });
+
+        // Format expiry date
+        document.getElementById('expiryDate').addEventListener('input', function(e) {
+            const input = e.target;
+            let value = input.value.replace(/\D/g, '');
+
+            if(value.length > 2) {
+                input.value = value.substring(0, 2) + '/' + value.substring(2);
+            } else {
+                input.value = value;
+            }
+        });
+
+        // Get game data from URL parameters
+        function getGameDataFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const gameId = urlParams.get('game');
+
+            // In a real app, this would be a fetch request to get game data
+            // For this demo, we'll use a simple mapping
+
+            let gameData = {
+                title: gameId || 'Unknown Game',
+                price: 4.99,
+                image: 'https://th.bing.com/th/id/OIP._2lwYHan_rAQRfLpq1d11QHaEo?rs=1&pid=ImgDetMain'
+            };
+
+            // Special case handling for known games
+            if(gameId === 'gta5-mobile') {
+                gameData = {
+                    title: 'GTA 5 Mobile MOD',
+                    price: 6.99,
+                    image: 'https://th.bing.com/th/id/OIP._2lwYHan_rAQRfLpq1d11QHaEo?rs=1&pid=ImgDetMain'
+                };
+            } else if(gameId === '8ball-pool') {
+                gameData = {
+                    title: '8 Ball Pool MOD',
+                    price: 4.99,
+                    image: 'https://th.bing.com/th/id/OIP.bA3vNaZJdpwpA0VdVfpf4gHaEo?rs=1&pid=ImgDetMain'
+                };
+            }
+
+            return gameData;
+        }
+
+        // Update UI with game data
+        function updateGameInfo() {
+            const gameData = getGameDataFromUrl();
+
+            document.getElementById('gameTitle').textContent = gameData.title;
+            document.getElementById('gamePrice').textContent = `$${gameData.price.toFixed(2)}`;
+            document.getElementById('subtotal').textContent = `$${gameData.price.toFixed(2)}`;
+            document.getElementById('totalPrice').textContent = `$${gameData.price.toFixed(2)}`;
+            document.getElementById('gameImage').src = gameData.image;
+            document.getElementById('gameImage').alt = gameData.title;
+        }
+
+        // Handle form submission
+        document.getElementById('paymentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // In a real app, this would validate inputs and make a payment API call
+            // For this demo, we'll simulate a successful payment
+
+            // Show processing message
+            const notification = document.getElementById('notification');
+            notification.innerHTML = 'Processing payment...';
+            notification.classList.add('show');
+
+            // Simulate API call delay
+            setTimeout(() => {
+                // Get game data
+                const gameData = getGameDataFromUrl();
+
+                // Update user account to premium for this game
+                const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+
+                if(currentUser.id) {
+                    // If no purchases array exists, create one
+                    if(!currentUser.purchases) {
+                        currentUser.purchases = [];
+                    }
+
+                    // Add purchase
+                    currentUser.purchases.push({
+                        gameId: gameData.title.toLowerCase().replace(/\s+/g, '-'),
+                        purchaseDate: new Date().toISOString(),
+                        price: gameData.price,
+                        premium: true
+                    });
+
+                    // Save back to localStorage
+                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+
+                    // Update notification
+                    notification.innerHTML = 'Payment successful! Redirecting to download...';
+                    notification.className = 'notification success show';
+
+                    // Redirect after delay
+                    setTimeout(() => {
+                        // Construct the URL to redirect back to the game page
+                        const gameId = gameData.title.toLowerCase().replace(/\s+/g, '-');
+                        const url = gameId.includes('gta5') ? 'gta5-mod.html' :
+                                    gameId.includes('8ball') ? '8ball-mod.html' :
+                                    'index.html';
+
+                        window.location.href = url + '?premium=true';
+                    }, 2000);
+                } else {
+                    // If no user is logged in (shouldn't happen, but just in case)
+                    notification.innerHTML = 'Please log in to complete your purchase';
+
+                    // Redirect to login
+                    setTimeout(() => {
+                        window.location.href = 'login.html';
+                    }, 2000);
+                }
+            }, 2000);
+        });
+
+        // Initialize
+        window.addEventListener('DOMContentLoaded', updateGameInfo);
+    </script>
+</body>
+</html>
